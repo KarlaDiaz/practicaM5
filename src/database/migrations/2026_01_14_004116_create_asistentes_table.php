@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('asistentes', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->string('email')->unique();  
+            $table->string('telefono')->nullable();
+            $table->foreignId('evento_id')->constrained('eventos')->onDelete('cascade');
             $table->timestamps();
         });
     }
