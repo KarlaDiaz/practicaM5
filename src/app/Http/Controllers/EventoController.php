@@ -31,11 +31,11 @@ class EventoController extends Controller
     {
         // Validar que la petición contenga todos los datos necesarios
         $validator = Validator::make($request->all(), [
-            'titulo' => 'required',
-            'descripcion' => 'required',
+            'titulo' => 'required|string',
+            'descripcion' => 'required|string',
             'fecha_inicio' => 'required|date',
-            'fecha_fin' => 'required|date',
-            'ubicacion' => 'required',
+            'fecha_fin' => 'required|date|after_or_equal:fecha_inicio',
+            'ubicacion' => 'required|string',
         ]);
         // Si la petición no contiene todos los datos necesarios, retornar un mensaje de error
         if ($validator->fails()) {
